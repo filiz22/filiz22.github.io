@@ -8,111 +8,92 @@
 
   <style>
     :root{
-      --header-overlay: rgba(55, 10, 28, 0.58);
-      --header-overlay-2: rgba(55, 10, 28, 0.72);
-      --text-dark: #222;
-      --purple-num: #9b79c8;
-      --white: #ffffff;
+      --burgundy:#3b0719;
+      --cream:#f6ecdf;
+      --number:#8e6caf;
+      --dark:#191919;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
-    html, body{
+    html{scroll-behavior:smooth}
+
+    body{
       margin:0;
-      padding:0;
       background:#fff;
-      color:var(--text-dark);
-      font-family: Arial, Helvetica, sans-serif;
+      color:var(--dark);
+      font-family:Arial, Helvetica, sans-serif;
     }
 
-    .page{
-      width:min(1500px, calc(100% - 40px));
-      margin:20px auto 0;
-    }
+    button{font:inherit}
 
     .hero{
+      min-height:430px;
+      color:var(--cream);
       background:
-        linear-gradient(var(--header-overlay), var(--header-overlay-2)),
-        url("assets/bg.jpg") center center / cover no-repeat;
-      color:#fff;
-      min-height:380px;
-      position:relative;
-      padding:22px 20px 40px;
+        linear-gradient(rgba(52,5,22,.58),rgba(52,5,22,.70)),
+        url("assets/bg.jpg") center/cover no-repeat;
+      padding:70px 28px 54px;
       display:flex;
       flex-direction:column;
-      justify-content:flex-start;
-    }
-
-    .hero-top{
-      width:100%;
-      max-width:260px;
-    }
-
-    .small-brand{
-      font-size:18px;
-      font-weight:300;
-      margin:0 0 8px;
-    }
-
-    .hero-line{
-      height:1px;
-      background:rgba(255,255,255,.35);
-      width:100%;
-    }
-
-    .hero-center{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
       justify-content:center;
-      text-align:center;
-      padding:20px 10px 10px;
     }
 
-    .hero-center h1{
+    .hero-inner{
+      width:min(1480px,100%);
+      margin:0 auto;
+    }
+
+    .hero h1{
       margin:0;
-      font-weight:300;
-      line-height:1;
-      letter-spacing:.01em;
-      font-size:clamp(54px, 8vw, 100px);
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(70px,9vw,145px);
+      line-height:.9;
+      font-weight:400;
+      letter-spacing:-.055em;
     }
 
-    .hero-center p{
-      margin:18px 0 0;
+    .hero p{
+      margin:26px 0 0;
+      font-size:14px;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:12px;
     }
 
-    .gallery-wrap{
+    .gallery-section{
       background:#fff;
-      padding:28px 0 50px;
+      padding:38px 28px 72px;
     }
 
     .gallery{
-      width:min(1260px, calc(100% - 40px));
+      width:min(1480px,100%);
       margin:0 auto;
       display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      grid-auto-rows:8px;
-      gap:0 32px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:42px 28px;
       align-items:start;
     }
 
     .photo{
       margin:0;
-      padding:0 0 26px;
+      min-width:0;
+    }
+
+    .num{
+      display:block;
+      margin:0 0 10px;
+      color:var(--number);
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:19px;
+      line-height:1;
+      text-align:center;
     }
 
     .photo button{
-      display:block;
       width:100%;
-      padding:0;
-      margin:0;
+      display:block;
       border:0;
+      padding:0;
       background:none;
       cursor:zoom-in;
     }
@@ -120,184 +101,199 @@
     .photo img{
       display:block;
       width:100%;
-      height:auto;
+      aspect-ratio:4/3;
+      object-fit:cover;
+      background:#eee;
+      transition:opacity .18s ease, transform .18s ease;
     }
 
-    .num{
-      display:block;
-      text-align:center;
-      margin-top:14px;
-      font-size:17px;
-      color:var(--purple-num);
-      font-family: Georgia, "Times New Roman", serif;
+    .photo button:hover img{
+      opacity:.94;
+      transform:scale(.997);
     }
 
     .lightbox{
       position:fixed;
       inset:0;
-      z-index:999;
-      background:rgba(0,0,0,.95);
+      z-index:1000;
       display:none;
       align-items:center;
       justify-content:center;
-      padding:30px;
+      padding:58px 72px;
+      background:rgba(9,2,5,.96);
     }
 
-    .lightbox.open{
-      display:flex;
-    }
+    .lightbox.open{display:flex}
 
     .lightbox img{
-      max-width:96vw;
-      max-height:92vh;
+      display:block;
+      max-width:100%;
+      max-height:calc(100vh - 116px);
       object-fit:contain;
     }
 
-    .close{
+    .close,
+    .prev,
+    .next{
       position:absolute;
-      top:16px;
-      right:22px;
       border:0;
-      background:none;
+      background:transparent;
       color:#fff;
-      font-size:36px;
       cursor:pointer;
+      z-index:2;
+    }
+
+    .close{
+      top:18px;
+      right:24px;
+      font-size:38px;
       line-height:1;
     }
 
-    @media (max-width: 1000px){
+    .prev,
+    .next{
+      top:50%;
+      transform:translateY(-50%);
+      font-size:46px;
+      padding:16px;
+    }
+
+    .prev{left:6px}
+    .next{right:6px}
+
+    .lightbox-num{
+      position:absolute;
+      left:24px;
+      top:22px;
+      color:#fff;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:18px;
+    }
+
+    @media (max-width:950px){
       .gallery{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:0 20px;
+        grid-template-columns:repeat(2,minmax(0,1fr));
       }
     }
 
-    @media (max-width: 650px){
-      .page{
-        width:min(100% - 16px, 1500px);
-        margin-top:8px;
-      }
-
+    @media (max-width:620px){
       .hero{
-        min-height:280px;
-        padding:18px 14px 28px;
+        min-height:300px;
+        padding:48px 18px 38px;
       }
 
-      .small-brand{
-        font-size:16px;
+      .hero h1{
+        font-size:clamp(58px,20vw,92px);
+      }
+
+      .hero p{
+        font-size:11px;
+      }
+
+      .gallery-section{
+        padding:28px 14px 52px;
       }
 
       .gallery{
-        width:min(100% - 16px, 1260px);
         grid-template-columns:1fr;
-        display:block;
+        gap:30px;
       }
 
-      .photo{
-        padding-bottom:24px;
+      .photo img{
+        aspect-ratio:auto;
       }
+
+      .lightbox{
+        padding:56px 14px;
+      }
+
+      .prev,.next{
+        font-size:36px;
+        padding:8px;
+      }
+
+      .prev{left:0}
+      .next{right:0}
     }
   </style>
 </head>
+
 <body>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Fizzy Portfolio</h1>
+      <p>Photography by Filiz Sonmez</p>
+    </div>
+  </header>
 
-  <div class="page">
-    <header class="hero">
-      <div class="hero-top">
-        <div class="small-brand">Fizzy Portfolio</div>
-        <div class="hero-line"></div>
-      </div>
+  <main class="gallery-section">
+    <div class="gallery">
+      <figure class="photo"><span class="num">01</span><button data-index="0" aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">02</span><button data-index="1" aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">03</span><button data-index="2" aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">04</span><button data-index="3" aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">05</span><button data-index="4" aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">06</span><button data-index="5" aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">07</span><button data-index="6" aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">08</span><button data-index="7" aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">09</span><button data-index="8" aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">10</span><button data-index="9" aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">11</span><button data-index="10" aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">12</span><button data-index="11" aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">13</span><button data-index="12" aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
+    </div>
+  </main>
 
-      <div class="hero-center">
-        <h1>Fizzy Portfolio</h1>
-        <p>Photography by Filiz Sonmez</p>
-      </div>
-    </header>
-  </div>
-
-  <section class="gallery-wrap">
-    <main class="gallery" id="gallery">
-      <figure class="photo"><button><img src="assets/01.jpg" alt=""></button><span class="num">01</span></figure>
-      <figure class="photo"><button><img src="assets/02.jpg" alt=""></button><span class="num">02</span></figure>
-      <figure class="photo"><button><img src="assets/03.jpg" alt=""></button><span class="num">03</span></figure>
-      <figure class="photo"><button><img src="assets/04.jpg" alt=""></button><span class="num">04</span></figure>
-      <figure class="photo"><button><img src="assets/05.jpg" alt=""></button><span class="num">05</span></figure>
-      <figure class="photo"><button><img src="assets/06.jpg" alt=""></button><span class="num">06</span></figure>
-      <figure class="photo"><button><img src="assets/07.jpg" alt=""></button><span class="num">07</span></figure>
-      <figure class="photo"><button><img src="assets/08.jpg" alt=""></button><span class="num">08</span></figure>
-      <figure class="photo"><button><img src="assets/09.jpg" alt=""></button><span class="num">09</span></figure>
-      <figure class="photo"><button><img src="assets/10.jpg" alt=""></button><span class="num">10</span></figure>
-      <figure class="photo"><button><img src="assets/11.jpg" alt=""></button><span class="num">11</span></figure>
-      <figure class="photo"><button><img src="assets/12.jpg" alt=""></button><span class="num">12</span></figure>
-      <figure class="photo"><button><img src="assets/13.jpg" alt=""></button><span class="num">13</span></figure>
-    </main>
-  </section>
-
-  <div class="lightbox" id="lightbox">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <span class="lightbox-num" id="lightboxNum">01</span>
     <button class="close" id="close" aria-label="Close">×</button>
+    <button class="prev" id="prev" aria-label="Previous photo">‹</button>
     <img id="lightboxImage" alt="">
+    <button class="next" id="next" aria-label="Next photo">›</button>
   </div>
 
   <script>
-    const gallery = document.getElementById('gallery');
-    const cards = [...document.querySelectorAll('.photo')];
-
-    function resizeMasonryItem(item){
-      if (window.innerWidth <= 650) {
-        item.style.gridRowEnd = '';
-        return;
-      }
-      const styles = getComputedStyle(gallery);
-      const row = parseInt(styles.getPropertyValue('grid-auto-rows'));
-      const gap = parseInt(styles.getPropertyValue('row-gap')) || 0;
-      const height = item.getBoundingClientRect().height;
-      const span = Math.ceil((height + gap) / (row + gap));
-      item.style.gridRowEnd = 'span ' + span;
-    }
-
-    function resizeAll(){
-      cards.forEach(resizeMasonryItem);
-    }
-
-    document.querySelectorAll('.photo img').forEach(img => {
-      if (img.complete) {
-        requestAnimationFrame(resizeAll);
-      } else {
-        img.addEventListener('load', resizeAll, { once:true });
-      }
-    });
-
-    window.addEventListener('load', resizeAll);
-    window.addEventListener('resize', resizeAll);
+    const files = Array.from({length:13}, (_,i) =>
+      'assets/' + String(i + 1).padStart(2,'0') + '.jpg'
+    );
 
     const box = document.getElementById('lightbox');
-    const boxImage = document.getElementById('lightboxImage');
-    const close = document.getElementById('close');
+    const image = document.getElementById('lightboxImage');
+    const number = document.getElementById('lightboxNum');
+    let current = 0;
 
-    document.querySelectorAll('.photo img').forEach(img => {
-      img.parentElement.addEventListener('click', () => {
-        boxImage.src = img.src;
-        box.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      });
-    });
+    function openPhoto(index){
+      current = (index + files.length) % files.length;
+      image.src = files[current];
+      number.textContent = String(current + 1).padStart(2,'0');
+      box.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-    function closeBox(){
+    function closePhoto(){
       box.classList.remove('open');
-      boxImage.src = '';
+      image.src = '';
       document.body.style.overflow = '';
     }
 
-    close.addEventListener('click', closeBox);
-
-    box.addEventListener('click', e => {
-      if (e.target === box) closeBox();
+    document.querySelectorAll('.photo button').forEach(button => {
+      button.addEventListener('click', () => openPhoto(Number(button.dataset.index)));
     });
 
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeBox();
+    document.getElementById('close').addEventListener('click', closePhoto);
+    document.getElementById('prev').addEventListener('click', () => openPhoto(current - 1));
+    document.getElementById('next').addEventListener('click', () => openPhoto(current + 1));
+
+    box.addEventListener('click', event => {
+      if(event.target === box) closePhoto();
+    });
+
+    document.addEventListener('keydown', event => {
+      if(!box.classList.contains('open')) return;
+      if(event.key === 'Escape') closePhoto();
+      if(event.key === 'ArrowLeft') openPhoto(current - 1);
+      if(event.key === 'ArrowRight') openPhoto(current + 1);
     });
   </script>
-
 </body>
 </html>
