@@ -6,121 +6,214 @@
   <meta name="description" content="Fizzy Portfolio — Photography by Filiz Sonmez">
   <title>Fizzy Portfolio</title>
   <style>
+    :root{
+      --cream:#f4eadc;
+      --cream-soft:#dfd0c0;
+      --wine:#3b0b1d;
+      --line:rgba(244,234,220,.32);
+    }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+
+    html,body{
+      margin:0;
+      padding:0;
+    }
+
     body{
+      min-height:100vh;
       font-family:Arial,Helvetica,sans-serif;
-      background:#f7f4ef;
-      color:#171717;
+      color:var(--cream);
+      background:
+        linear-gradient(rgba(49,8,24,.84),rgba(49,8,24,.90)),
+        url("assets/bg.jpg") center top / cover fixed;
     }
+
+    .page{
+      width:min(1220px,calc(100% - 36px));
+      margin:0 auto;
+    }
+
     header{
-      text-align:center;
-      padding:70px 20px 44px;
+      padding:64px 0 42px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:26px;
     }
+
     h1{
       margin:0;
       font-family:Georgia,"Times New Roman",serif;
-      font-size:clamp(44px,7vw,82px);
+      font-size:clamp(52px,8vw,104px);
+      line-height:.95;
       font-weight:400;
-      letter-spacing:-.03em;
+      letter-spacing:-.045em;
     }
+
     .byline{
-      margin:14px 0 0;
-      font-size:12px;
-      letter-spacing:.18em;
+      margin:16px 0 0;
       text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:11px;
+      color:var(--cream-soft);
     }
+
     .gallery{
-      width:min(1200px,calc(100% - 28px));
-      margin:0 auto 40px;
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:12px;
-      align-items:start;
+      grid-auto-rows:8px;
+      gap:0 16px;
+      padding-bottom:56px;
     }
-    .gallery button{
-      border:0;
-      padding:0;
+
+    .photo{
       margin:0;
-      background:transparent;
-      cursor:zoom-in;
+      padding:0 0 16px;
+      min-width:0;
+    }
+
+    .num{
+      display:block;
+      padding:0 0 8px;
+      margin:0 0 8px;
+      border-bottom:1px solid var(--line);
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:15px;
+      line-height:1;
+      letter-spacing:.04em;
+    }
+
+    .photo button{
       display:block;
       width:100%;
+      padding:0;
+      border:0;
+      background:transparent;
+      cursor:zoom-in;
     }
-    .gallery img{
+
+    .photo img{
       display:block;
       width:100%;
       height:auto;
     }
+
     .lightbox{
       position:fixed;
       inset:0;
       z-index:999;
-      background:rgba(0,0,0,.95);
       display:none;
       align-items:center;
       justify-content:center;
-      padding:30px;
+      padding:46px 64px;
+      background:rgba(15,2,8,.96);
     }
+
     .lightbox.open{display:flex}
+
     .lightbox img{
-      max-width:96vw;
-      max-height:92vh;
+      display:block;
+      max-width:100%;
+      max-height:calc(100vh - 92px);
       object-fit:contain;
     }
+
     .close{
       position:absolute;
       top:16px;
       right:22px;
       border:0;
       background:none;
-      color:#fff;
+      color:var(--cream);
       font-size:36px;
-      cursor:pointer;
       line-height:1;
+      cursor:pointer;
     }
-    @media(max-width:800px){
-      header{padding:48px 18px 32px}
-      .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:min(100% - 16px,1200px)}
+
+    @media(max-width:850px){
+      .gallery{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:0 12px;
+      }
+      header{padding-top:48px}
     }
-    @media(max-width:520px){
-      .gallery{grid-template-columns:1fr}
+
+    @media(max-width:540px){
+      .page{width:min(100% - 20px,1220px)}
+      .gallery{
+        grid-template-columns:1fr;
+        display:block;
+      }
+      .photo{padding-bottom:18px}
+      .lightbox{padding:52px 12px 18px}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Fizzy Portfolio</h1>
-    <p class="byline">Photography by Filiz Sonmez</p>
-  </header>
+  <div class="page">
+    <header>
+      <h1>Fizzy Portfolio</h1>
+      <p class="byline">Photography by Filiz Sonmez</p>
+    </header>
 
-  <main class="gallery">
-    <button><img src="assets/01.jpg" alt=""></button>
-    <button><img src="assets/02.jpg" alt=""></button>
-    <button><img src="assets/03.jpg" alt=""></button>
-    <button><img src="assets/04.jpg" alt=""></button>
-    <button><img src="assets/05.jpg" alt=""></button>
-    <button><img src="assets/06.jpg" alt=""></button>
-    <button><img src="assets/07.jpg" alt=""></button>
-    <button><img src="assets/08.jpg" alt=""></button>
-    <button><img src="assets/09.jpg" alt=""></button>
-    <button><img src="assets/10.jpg" alt=""></button>
-    <button><img src="assets/11.jpg" alt=""></button>
-    <button><img src="assets/12.jpg" alt=""></button>
-    <button><img src="assets/13.jpg" alt=""></button>
-  </main>
+    <main class="gallery" id="gallery">
+      <figure class="photo"><span class="num">01</span><button aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">02</span><button aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">03</span><button aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">04</span><button aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">05</span><button aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">06</span><button aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">07</span><button aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">08</span><button aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">09</span><button aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">10</span><button aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">11</span><button aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">12</span><button aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
+      <figure class="photo"><span class="num">13</span><button aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
+    </main>
+  </div>
 
-  <div class="lightbox" id="lightbox">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <button class="close" id="close" aria-label="Close">×</button>
     <img id="lightboxImage" alt="">
   </div>
 
   <script>
+    const gallery = document.getElementById('gallery');
+    const cards = [...document.querySelectorAll('.photo')];
+
+    function resizeMasonryItem(item){
+      if (window.innerWidth <= 540) {
+        item.style.gridRowEnd = '';
+        return;
+      }
+      const styles = getComputedStyle(gallery);
+      const row = parseInt(styles.getPropertyValue('grid-auto-rows'));
+      const gap = parseInt(styles.getPropertyValue('row-gap')) || 0;
+      const height = item.getBoundingClientRect().height;
+      const span = Math.ceil((height + gap) / (row + gap));
+      item.style.gridRowEnd = 'span ' + span;
+    }
+
+    function resizeAll(){
+      cards.forEach(resizeMasonryItem);
+    }
+
+    document.querySelectorAll('.photo img').forEach(img => {
+      if (img.complete) {
+        requestAnimationFrame(resizeAll);
+      } else {
+        img.addEventListener('load', resizeAll, {once:true});
+      }
+    });
+
+    window.addEventListener('resize', resizeAll);
+    window.addEventListener('load', resizeAll);
+
     const box = document.getElementById('lightbox');
     const boxImage = document.getElementById('lightboxImage');
     const close = document.getElementById('close');
 
-    document.querySelectorAll('.gallery img').forEach(img => {
+    document.querySelectorAll('.photo img').forEach(img => {
       img.parentElement.addEventListener('click', () => {
         boxImage.src = img.src;
         box.classList.add('open');
@@ -138,6 +231,7 @@
     box.addEventListener('click', e => {
       if (e.target === box) closeBox();
     });
+
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeBox();
     });
