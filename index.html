@@ -4,298 +4,142 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Fizzy Portfolio — Photography by Filiz Sonmez">
-  <title>Fizzy Portfolio — Filiz Sonmez</title>
+  <title>Fizzy Portfolio</title>
   <style>
-    :root{
-      --cream:#f4eadc;
-      --cream-soft:#e8dccd;
-      --wine:#4b1225;
-      --wine-deep:#260814;
-      --line:rgba(244,234,220,.35);
-    }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
     body{
-      margin:0;
-      color:var(--cream);
-      font-family:Arial, Helvetica, sans-serif;
-      background:
-        linear-gradient(rgba(39,7,20,.77),rgba(39,7,20,.86)),
-        url("assets/bg.jpg") center top / cover fixed;
-      min-height:100vh;
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f7f4ef;
+      color:#171717;
     }
-    a{color:inherit}
-    button{font:inherit}
-    .shell{width:min(1180px,calc(100% - 40px));margin:0 auto}
-    .nav{
-      min-height:82px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--line);
-      text-transform:uppercase;
-      letter-spacing:.13em;
-      font-size:11px;
-    }
-    .brand{font-weight:700;text-decoration:none}
-    .nav a:last-child{text-decoration:none;opacity:.86}
-    .hero{
-      min-height:72vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding:90px 0 70px;
-    }
-    .eyebrow{
-      margin:0 0 24px;
-      text-transform:uppercase;
-      letter-spacing:.19em;
-      font-size:11px;
-      color:var(--cream-soft);
+    header{
+      text-align:center;
+      padding:70px 20px 44px;
     }
     h1{
       margin:0;
-      font-family:Georgia, "Times New Roman", serif;
-      font-weight:400;
-      font-size:clamp(82px,18vw,220px);
-      line-height:.77;
-      letter-spacing:-.07em;
-    }
-    .hero-bottom{
-      margin-top:58px;
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:30px;
-      align-items:end;
-      border-top:1px solid var(--line);
-      padding-top:22px;
-    }
-    .hero-bottom p{margin:0;max-width:500px;font-family:Georgia,serif;font-size:clamp(20px,3vw,34px);line-height:1.15}
-    .hero-link{
-      justify-self:end;
-      text-transform:uppercase;
-      text-decoration:none;
-      letter-spacing:.14em;
-      font-size:11px;
-      padding:13px 0;
-    }
-    .section{
-      padding:86px 0 120px;
-      border-top:1px solid var(--line);
-    }
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:30px;
-      margin-bottom:52px;
-    }
-    .section-head h2{
-      margin:0;
-      font-family:Georgia, "Times New Roman", serif;
-      font-weight:400;
+      font-family:Georgia,"Times New Roman",serif;
       font-size:clamp(44px,7vw,82px);
-      line-height:.95;
+      font-weight:400;
+      letter-spacing:-.03em;
     }
-    .count{
-      white-space:nowrap;
+    .byline{
+      margin:14px 0 0;
+      font-size:12px;
+      letter-spacing:.18em;
       text-transform:uppercase;
-      letter-spacing:.16em;
-      font-size:11px;
-      opacity:.85;
     }
     .gallery{
+      width:min(1200px,calc(100% - 28px));
+      margin:0 auto 40px;
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:44px 34px;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      align-items:start;
     }
-    .photo{
-      margin:0;
-      min-width:0;
-    }
-    .num{
-      display:block;
-      margin:0 0 10px;
-      padding-bottom:8px;
-      border-bottom:1px solid var(--line);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:17px;
-      line-height:1;
-      letter-spacing:.05em;
-    }
-    .photo button{
-      display:block;
-      width:100%;
-      padding:0;
+    .gallery button{
       border:0;
-      background:none;
-      color:inherit;
+      padding:0;
+      margin:0;
+      background:transparent;
       cursor:zoom-in;
-      text-align:left;
-    }
-    .photo img{
       display:block;
       width:100%;
-      aspect-ratio:4 / 3;
-      object-fit:cover;
-      background:rgba(255,255,255,.04);
-      transition:transform .25s ease, opacity .25s ease;
     }
-    .photo.portrait img{aspect-ratio:3 / 4}
-    .photo button:hover img{transform:scale(.995);opacity:.94}
-    footer{
-      min-height:120px;
-      border-top:1px solid var(--line);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:24px;
-      text-transform:uppercase;
-      letter-spacing:.13em;
-      font-size:10px;
+    .gallery img{
+      display:block;
+      width:100%;
+      height:auto;
     }
-    footer a{text-decoration:none}
     .lightbox{
       position:fixed;
       inset:0;
       z-index:999;
-      background:rgba(12,2,7,.96);
+      background:rgba(0,0,0,.95);
       display:none;
       align-items:center;
       justify-content:center;
-      padding:58px 76px;
+      padding:30px;
     }
     .lightbox.open{display:flex}
     .lightbox img{
-      max-width:100%;
-      max-height:calc(100vh - 116px);
+      max-width:96vw;
+      max-height:92vh;
       object-fit:contain;
-      box-shadow:0 18px 70px rgba(0,0,0,.34);
     }
-    .lb-close,.lb-prev,.lb-next{
+    .close{
       position:absolute;
+      top:16px;
+      right:22px;
       border:0;
-      background:transparent;
-      color:var(--cream);
+      background:none;
+      color:#fff;
+      font-size:36px;
       cursor:pointer;
-      z-index:2;
+      line-height:1;
     }
-    .lb-close{top:20px;right:24px;font-size:34px;line-height:1}
-    .lb-prev,.lb-next{
-      top:50%;
-      transform:translateY(-50%);
-      font-size:42px;
-      padding:18px;
+    @media(max-width:800px){
+      header{padding:48px 18px 32px}
+      .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;width:min(100% - 16px,1200px)}
     }
-    .lb-prev{left:10px}.lb-next{right:10px}
-    .lb-number{
-      position:absolute;
-      left:24px;
-      top:24px;
-      font-family:Georgia,serif;
-      font-size:17px;
-      letter-spacing:.05em;
-    }
-    @media (max-width:760px){
-      .shell{width:min(100% - 24px,1180px)}
-      .nav{min-height:68px}
-      .hero{min-height:64vh;padding:64px 0 54px}
-      .hero-bottom{grid-template-columns:1fr}
-      .hero-link{justify-self:start}
-      .section{padding:64px 0 90px}
-      .section-head{align-items:flex-start;flex-direction:column}
-      .gallery{grid-template-columns:1fr;gap:34px}
-      .photo img,.photo.portrait img{aspect-ratio:auto;max-height:none}
-      .lightbox{padding:56px 14px}
-      .lb-prev,.lb-next{font-size:34px;padding:8px}
-      .lb-prev{left:0}.lb-next{right:0}
+    @media(max-width:520px){
+      .gallery{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <div class="shell" id="top">
-    <nav class="nav">
-      <a class="brand" href="#top">Fizzy Portfolio</a>
-      <a href="#photographs">The Photographs ↓</a>
-    </nav>
+  <header>
+    <h1>Fizzy Portfolio</h1>
+    <p class="byline">Photography by Filiz Sonmez</p>
+  </header>
 
-    <header class="hero">
-      <p class="eyebrow">Photography by Filiz Sonmez</p>
-      <h1>fizzy</h1>
-      <div class="hero-bottom">
-        <p>Places, moments &amp; everything in between.</p>
-        <a class="hero-link" href="#photographs">View the photographs ↓</a>
-      </div>
-    </header>
+  <main class="gallery">
+    <button><img src="assets/01.jpg" alt=""></button>
+    <button><img src="assets/02.jpg" alt=""></button>
+    <button><img src="assets/03.jpg" alt=""></button>
+    <button><img src="assets/04.jpg" alt=""></button>
+    <button><img src="assets/05.jpg" alt=""></button>
+    <button><img src="assets/06.jpg" alt=""></button>
+    <button><img src="assets/07.jpg" alt=""></button>
+    <button><img src="assets/08.jpg" alt=""></button>
+    <button><img src="assets/09.jpg" alt=""></button>
+    <button><img src="assets/10.jpg" alt=""></button>
+    <button><img src="assets/11.jpg" alt=""></button>
+    <button><img src="assets/12.jpg" alt=""></button>
+    <button><img src="assets/13.jpg" alt=""></button>
+  </main>
 
-    <main class="section" id="photographs">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">A personal collection</p>
-          <h2>The Photographs</h2>
-        </div>
-        <div class="count">01 — 13</div>
-      </div>
-
-      <div class="gallery">
-        <figure class="photo"><span class="num">01</span><button data-i="0" aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt="Golden Gate Bridge at dusk"></button></figure>
-        <figure class="photo portrait"><span class="num">02</span><button data-i="1" aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt="Quiet shoreline beneath a blue evening sky"></button></figure>
-        <figure class="photo"><span class="num">03</span><button data-i="2" aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt="Palace of Fine Arts reflected in the lagoon"></button></figure>
-        <figure class="photo"><span class="num">04</span><button data-i="3" aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt="Carved stone figures around a classical column"></button></figure>
-        <figure class="photo"><span class="num">05</span><button data-i="4" aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt="Cable cars silhouetted against the evening sun"></button></figure>
-        <figure class="photo"><span class="num">06</span><button data-i="5" aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt="Sunlight falling through an autumn forest"></button></figure>
-        <figure class="photo"><span class="num">07</span><button data-i="6" aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt="Autumn treetops stretching toward the horizon"></button></figure>
-        <figure class="photo"><span class="num">08</span><button data-i="7" aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt="Street mural"></button></figure>
-        <figure class="photo portrait"><span class="num">09</span><button data-i="8" aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt="Warmly lit pub"></button></figure>
-        <figure class="photo"><span class="num">10</span><button data-i="9" aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt="Stone building with ornate rooflines"></button></figure>
-        <figure class="photo"><span class="num">11</span><button data-i="10" aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt="Bright green plants growing between stones"></button></figure>
-        <figure class="photo"><span class="num">12</span><button data-i="11" aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt="Red and white fishing boats in a misty harbor"></button></figure>
-        <figure class="photo portrait"><span class="num">13</span><button data-i="12" aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt="Rocky shoreline beneath a gray sky"></button></figure>
-      </div>
-    </main>
-
-    <footer>
-      <span>© 2026 Filiz Sonmez</span>
-      <a href="#top">Back to top ↑</a>
-    </footer>
-  </div>
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
-    <span class="lb-number" id="lbNumber">01</span>
-    <button class="lb-close" id="lbClose" aria-label="Close">×</button>
-    <button class="lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
-    <img id="lbImage" alt="">
-    <button class="lb-next" id="lbNext" aria-label="Next photo">›</button>
+  <div class="lightbox" id="lightbox">
+    <button class="close" id="close" aria-label="Close">×</button>
+    <img id="lightboxImage" alt="">
   </div>
 
   <script>
-    const images = Array.from({length:13},(_,i)=>`assets/${String(i+1).padStart(2,'0')}.jpg`);
     const box = document.getElementById('lightbox');
-    const boxImg = document.getElementById('lbImage');
-    const boxNum = document.getElementById('lbNumber');
-    let current = 0;
+    const boxImage = document.getElementById('lightboxImage');
+    const close = document.getElementById('close');
 
-    function show(i){
-      current = (i + images.length) % images.length;
-      boxImg.src = images[current];
-      boxNum.textContent = String(current + 1).padStart(2,'0');
-      box.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.parentElement.addEventListener('click', () => {
+        boxImage.src = img.src;
+        box.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
     function closeBox(){
       box.classList.remove('open');
+      boxImage.src = '';
       document.body.style.overflow = '';
     }
-    document.querySelectorAll('.photo button').forEach(btn => btn.addEventListener('click',()=>show(Number(btn.dataset.i))));
-    document.getElementById('lbClose').addEventListener('click',closeBox);
-    document.getElementById('lbPrev').addEventListener('click',()=>show(current-1));
-    document.getElementById('lbNext').addEventListener('click',()=>show(current+1));
-    box.addEventListener('click',e=>{ if(e.target===box) closeBox(); });
-    document.addEventListener('keydown',e=>{
-      if(!box.classList.contains('open')) return;
-      if(e.key==='Escape') closeBox();
-      if(e.key==='ArrowLeft') show(current-1);
-      if(e.key==='ArrowRight') show(current+1);
+
+    close.addEventListener('click', closeBox);
+    box.addEventListener('click', e => {
+      if (e.target === box) closeBox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeBox();
     });
   </script>
 </body>
