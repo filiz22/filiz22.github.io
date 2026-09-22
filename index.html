@@ -38,8 +38,6 @@
       overflow:hidden;
     }
 
-    /* Keep the original pattern sharp instead of stretching one image
-       across the full width. */
     .hero::before{
       content:"";
       position:absolute;
@@ -284,101 +282,285 @@
 
   <main class="gallery-section">
     <div class="gallery" id="gallery">
-      <figure class="photo" data-index="0"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="1"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="2"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="3"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="4"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="5"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="6"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="7"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="8"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="9"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="10"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="11"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="12"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
+
+      <figure class="photo" data-index="0">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 01">
+          <img src="assets/01.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="1">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 02">
+          <img src="assets/02.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="2">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 03">
+          <img src="assets/03.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="3">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 04">
+          <img src="assets/04.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="4">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 05">
+          <img src="assets/05.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="5">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 06">
+          <img src="assets/06.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="6">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 07">
+          <img src="assets/07.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="7">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 08">
+          <img src="assets/08.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="8">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 09">
+          <img src="assets/09.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="9">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 10">
+          <img src="assets/10.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="10">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 11">
+          <img src="assets/11.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="11">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 12">
+          <img src="assets/12.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="12">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 13">
+          <img src="assets/13.jpg" alt="">
+        </button>
+      </figure>
+
     </div>
   </main>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lightbox" id="lightbox">
     <span class="lightbox-num" id="lightboxNum">01</span>
-    <button class="close" id="close" aria-label="Close">×</button>
-    <button class="prev" id="prev" aria-label="Previous photo">‹</button>
+
+    <button class="close" id="close">×</button>
+
+    <button class="prev" id="prev">‹</button>
+
     <img id="lightboxImage" alt="">
-    <button class="next" id="next" aria-label="Next photo">›</button>
+
+    <button class="next" id="next">›</button>
   </div>
 
   <script>
     const gallery = document.getElementById('gallery');
-    const photos = Array.from(gallery.querySelectorAll('.photo'));
-    const files = Array.from({length:13}, (_,i) =>
-      'assets/' + String(i + 1).padStart(2,'0') + '.jpg'
-    );
+
+    const photos =
+      Array.from(gallery.querySelectorAll('.photo'));
+
+    const files =
+      Array.from(
+        {length:13},
+        (_,i) =>
+          'assets/' +
+          String(i + 1).padStart(2,'0') +
+          '.jpg'
+      );
 
     function columnCount(){
       if(window.innerWidth <= 620) return 1;
+
       if(window.innerWidth <= 950) return 2;
+
       return 3;
     }
 
     function arrangeGallery(){
+
       const count = columnCount();
+
       gallery.innerHTML = '';
 
-      const columns = Array.from({length:count}, () => {
-        const col = document.createElement('div');
-        col.className = 'gallery-column';
-        gallery.appendChild(col);
-        return col;
+      const columns =
+        Array.from(
+          {length:count},
+          () => {
+
+            const column =
+              document.createElement('div');
+
+            column.className =
+              'gallery-column';
+
+            gallery.appendChild(column);
+
+            return column;
+          }
+        );
+
+      photos.forEach((photo,i) => {
+
+        columns[i % count]
+          .appendChild(photo);
+
       });
 
-      photos.forEach((photo, i) => {
-        columns[i % count].appendChild(photo);
-      });
     }
 
     arrangeGallery();
-    window.addEventListener('resize', arrangeGallery);
 
-    const box = document.getElementById('lightbox');
-    const image = document.getElementById('lightboxImage');
-    const number = document.getElementById('lightboxNum');
+    window.addEventListener(
+      'resize',
+      arrangeGallery
+    );
+
+    const box =
+      document.getElementById('lightbox');
+
+    const image =
+      document.getElementById('lightboxImage');
+
+    const number =
+      document.getElementById('lightboxNum');
+
     let current = 0;
 
     function openPhoto(index){
-      current = (index + files.length) % files.length;
-      image.src = files[current];
-      number.textContent = String(current + 1).padStart(2,'0');
+
+      current =
+        (index + files.length)
+        % files.length;
+
+      image.src =
+        files[current];
+
+      number.textContent =
+        String(current + 1)
+        .padStart(2,'0');
+
       box.classList.add('open');
-      document.body.style.overflow = 'hidden';
+
+      document.body.style.overflow =
+        'hidden';
     }
 
     function closePhoto(){
+
       box.classList.remove('open');
+
       image.src = '';
+
       document.body.style.overflow = '';
     }
 
     photos.forEach(photo => {
-      photo.querySelector('button').addEventListener('click', () => {
-        openPhoto(Number(photo.dataset.index));
-      });
+
+      photo
+        .querySelector('button')
+        .addEventListener(
+          'click',
+          () => {
+
+            openPhoto(
+              Number(photo.dataset.index)
+            );
+
+          }
+        );
+
     });
 
-    document.getElementById('close').addEventListener('click', closePhoto);
-    document.getElementById('prev').addEventListener('click', () => openPhoto(current - 1));
-    document.getElementById('next').addEventListener('click', () => openPhoto(current + 1));
+    document
+      .getElementById('close')
+      .addEventListener(
+        'click',
+        closePhoto
+      );
 
-    box.addEventListener('click', event => {
-      if(event.target === box) closePhoto();
-    });
+    document
+      .getElementById('prev')
+      .addEventListener(
+        'click',
+        () =>
+          openPhoto(current - 1)
+      );
 
-    document.addEventListener('keydown', event => {
-      if(!box.classList.contains('open')) return;
-      if(event.key === 'Escape') closePhoto();
-      if(event.key === 'ArrowLeft') openPhoto(current - 1);
-      if(event.key === 'ArrowRight') openPhoto(current + 1);
-    });
+    document
+      .getElementById('next')
+      .addEventListener(
+        'click',
+        () =>
+          openPhoto(current + 1)
+      );
+
+    box.addEventListener(
+      'click',
+      event => {
+
+        if(event.target === box)
+          closePhoto();
+
+      }
+    );
+
+    document.addEventListener(
+      'keydown',
+      event => {
+
+        if(
+          !box.classList
+            .contains('open')
+        ) return;
+
+        if(event.key === 'Escape')
+          closePhoto();
+
+        if(event.key === 'ArrowLeft')
+          openPhoto(current - 1);
+
+        if(event.key === 'ArrowRight')
+          openPhoto(current + 1);
+
+      }
+    );
   </script>
+
 </body>
 </html>
