@@ -112,15 +112,34 @@
       min-width:0;
     }
 
-    .num{
+    .symbol{
       display:block;
-      margin:0 0 7px;
+      margin:0 0 8px;
       color:var(--number);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:18px;
-      font-weight:700;
-      line-height:1;
       text-align:center;
+      line-height:1;
+      font-weight:700;
+    }
+
+    .symbol.peace{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:38px;
+    }
+
+    .symbol.heart{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:36px;
+    }
+
+    .symbol.amp{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:42px;
+      font-style:italic;
+    }
+
+    .symbol.note{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:40px;
     }
 
     .photo button{
@@ -265,19 +284,19 @@
 
   <main class="gallery-section">
     <div class="gallery" id="gallery">
-      <figure class="photo" data-index="0"><span class="num">01</span><button aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="1"><span class="num">02</span><button aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="2"><span class="num">03</span><button aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="3"><span class="num">04</span><button aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="4"><span class="num">05</span><button aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="5"><span class="num">06</span><button aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="6"><span class="num">07</span><button aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="7"><span class="num">08</span><button aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="8"><span class="num">09</span><button aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="9"><span class="num">10</span><button aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="10"><span class="num">11</span><button aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="11"><span class="num">12</span><button aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
-      <figure class="photo" data-index="12"><span class="num">13</span><button aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="0"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="1"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="2"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="3"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="4"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="5"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="6"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="7"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="8"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="9"><span class="symbol heart" aria-hidden="true">♥</span><button aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="10"><span class="symbol amp" aria-hidden="true">&amp;</span><button aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="11"><span class="symbol note" aria-hidden="true">♪</span><button aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="12"><span class="symbol peace" aria-hidden="true">☮</span><button aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
     </div>
   </main>
 
