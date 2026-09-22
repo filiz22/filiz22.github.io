@@ -273,6 +273,7 @@
 </head>
 
 <body>
+
   <header class="hero">
     <div class="hero-inner">
       <h1>Fizzy's Camera</h1>
@@ -281,6 +282,7 @@
   </header>
 
   <main class="gallery-section">
+
     <div class="gallery" id="gallery">
 
       <figure class="photo" data-index="0">
@@ -452,25 +454,40 @@
       </figure>
 
     </div>
+
   </main>
 
   <div class="lightbox" id="lightbox">
-    <span class="lightbox-num" id="lightboxNum">01</span>
 
-    <button class="close" id="close">×</button>
+    <span class="lightbox-num" id="lightboxNum">
+      01
+    </span>
 
-    <button class="prev" id="prev">‹</button>
+    <button class="close" id="close">
+      ×
+    </button>
+
+    <button class="prev" id="prev">
+      ‹
+    </button>
 
     <img id="lightboxImage" alt="">
 
-    <button class="next" id="next">›</button>
+    <button class="next" id="next">
+      ›
+    </button>
+
   </div>
 
   <script>
-    const gallery = document.getElementById('gallery');
+
+    const gallery =
+      document.getElementById('gallery');
 
     const photos =
-      Array.from(gallery.querySelectorAll('.photo'));
+      Array.from(
+        gallery.querySelectorAll('.photo')
+      );
 
     const files =
       Array.from(
@@ -482,16 +499,20 @@
       );
 
     function columnCount(){
-      if(window.innerWidth <= 620) return 1;
 
-      if(window.innerWidth <= 950) return 2;
+      if(window.innerWidth <= 620)
+        return 1;
+
+      if(window.innerWidth <= 950)
+        return 2;
 
       return 3;
     }
 
     function arrangeGallery(){
 
-      const count = columnCount();
+      const count =
+        columnCount();
 
       gallery.innerHTML = '';
 
@@ -532,10 +553,14 @@
       document.getElementById('lightbox');
 
     const image =
-      document.getElementById('lightboxImage');
+      document.getElementById(
+        'lightboxImage'
+      );
 
     const number =
-      document.getElementById('lightboxNum');
+      document.getElementById(
+        'lightboxNum'
+      );
 
     let current = 0;
 
@@ -637,6 +662,7 @@
 
       }
     );
+
   </script>
 
 </body>
