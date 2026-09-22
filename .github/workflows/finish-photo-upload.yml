@@ -1,0 +1,142 @@
+name: Finish portfolio photo upload
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack-and-update:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Unpack photos and update gallery
+        shell: bash
+        run: |
+          ZIP="assets/fizzy-portfolio-new-photos-14-24 (2).zip"
+
+          if [ ! -f "$ZIP" ]; then
+            echo "Portfolio ZIP not found; nothing to do."
+            exit 0
+          fi
+
+          unzip -o "$ZIP" -d assets
+          rm "$ZIP"
+
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+          html = path.read_text(encoding="utf-8")
+
+          if 'assets/24.jpg' not in html:
+              anchor = '''      <figure class="photo" data-index="12">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 13">
+          <img src="assets/13.jpg" alt="">
+        </button>
+      </figure>
+'''
+
+              additions = '''
+      <figure class="photo" data-index="13">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 14">
+          <img src="assets/14.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="14">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 15">
+          <img src="assets/15.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="15">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 16">
+          <img src="assets/16.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="16">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 17">
+          <img src="assets/17.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="17">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 18">
+          <img src="assets/18.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="18">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 19">
+          <img src="assets/19.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="19">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 20">
+          <img src="assets/20.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="20">
+        <span class="symbol peace">☮</span>
+        <button aria-label="Enlarge photo 21">
+          <img src="assets/21.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="21">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 22">
+          <img src="assets/22.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="22">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 23">
+          <img src="assets/23.jpg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="23">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 24">
+          <img src="assets/24.jpg" alt="">
+        </button>
+      </figure>
+'''
+
+              if anchor not in html:
+                  raise SystemExit("Could not find photo 13 block in index.html")
+
+              html = html.replace(anchor, anchor + additions)
+              html = html.replace("{length:13}", "{length:24}")
+
+          path.write_text(html, encoding="utf-8")
+          PY
+
+      - name: Commit finished portfolio
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets
+          git commit -m "Add portfolio photos 14 through 24" || exit 0
+          git push
