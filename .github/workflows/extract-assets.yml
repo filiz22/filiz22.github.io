@@ -1,0 +1,36 @@
+name: Extract portfolio images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "fizzy-github-pages.zip"
+      - ".github/workflows/extract-assets.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Extract image assets
+        run: |
+          rm -rf assets
+          unzip -o fizzy-github-pages.zip 'assets/*' -d .
+
+      - name: Commit extracted assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then
+            echo "Assets are already up to date."
+          else
+            git commit -m "Add portfolio image assets"
+            git push
+          fi
