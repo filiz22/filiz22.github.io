@@ -455,6 +455,69 @@
         </button>
       </figure>
 
+      <figure class="photo" data-index="24">
+        <span class="symbol peace">&#9774;&#65038;</span>
+        <button aria-label="Enlarge photo 25">
+          <img src="assets/25.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="25">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 26">
+          <img src="assets/26.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="26">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 27">
+          <img src="assets/27.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="27">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 28">
+          <img src="assets/28.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="28">
+        <span class="symbol peace">&#9774;&#65038;</span>
+        <button aria-label="Enlarge photo 29">
+          <img src="assets/29.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="29">
+        <span class="symbol heart">♥</span>
+        <button aria-label="Enlarge photo 30">
+          <img src="assets/30.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="30">
+        <span class="symbol amp">&amp;</span>
+        <button aria-label="Enlarge photo 31">
+          <img src="assets/31.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="31">
+        <span class="symbol note">♪</span>
+        <button aria-label="Enlarge photo 32">
+          <img src="assets/32.svg" alt="">
+        </button>
+      </figure>
+
+      <figure class="photo" data-index="32">
+        <span class="symbol peace">&#9774;&#65038;</span>
+        <button aria-label="Enlarge photo 33">
+          <img src="assets/33.svg" alt="">
+        </button>
+      </figure>
+
     </div>
 
   </main>
@@ -493,11 +556,15 @@
 
     const files =
       Array.from(
-        {length:24},
-        (_,i) =>
-          'assets/' +
-          String(i + 1).padStart(2,'0') +
-          '.jpg'
+        {length:33},
+        (_,i) => {
+          const number = i + 1;
+          return (
+            'assets/' +
+            String(number).padStart(2,'0') +
+            (number <= 24 ? '.jpg' : '.svg')
+          );
+        }
       );
 
     function columnCount(){
