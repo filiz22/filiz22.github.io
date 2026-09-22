@@ -10,12 +10,11 @@
     :root{
       --burgundy:#3b0719;
       --cream:#f6ecdf;
-      --number:#8e6caf;
+      --number:#3f2357;
       --dark:#191919;
     }
 
     *{box-sizing:border-box}
-
     html{scroll-behavior:smooth}
 
     body{
@@ -30,18 +29,45 @@
     .hero{
       min-height:430px;
       color:var(--cream);
-      background:
-        linear-gradient(rgba(52,5,22,.58),rgba(52,5,22,.70)),
-        url("assets/bg.jpg") center/cover no-repeat;
+      background:var(--burgundy);
       padding:70px 28px 54px;
       display:flex;
       flex-direction:column;
       justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Keep the original pattern sharp instead of stretching one image
+       across the full width. */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url("assets/bg.jpg");
+      background-size:520px auto;
+      background-repeat:repeat-x;
+      background-position:center 26%;
+      opacity:.82;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        90deg,
+        rgba(52,5,22,.48),
+        rgba(52,5,22,.30) 48%,
+        rgba(52,5,22,.46)
+      );
     }
 
     .hero-inner{
       width:min(1480px,100%);
       margin:0 auto;
+      position:relative;
+      z-index:1;
     }
 
     .hero h1{
@@ -62,7 +88,7 @@
 
     .gallery-section{
       background:#fff;
-      padding:38px 28px 72px;
+      padding:22px 22px 56px;
     }
 
     .gallery{
@@ -70,8 +96,15 @@
       margin:0 auto;
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:42px 28px;
+      gap:14px;
       align-items:start;
+    }
+
+    .gallery-column{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-width:0;
     }
 
     .photo{
@@ -81,10 +114,11 @@
 
     .num{
       display:block;
-      margin:0 0 10px;
+      margin:0 0 7px;
       color:var(--number);
       font-family:Georgia, "Times New Roman", serif;
-      font-size:19px;
+      font-size:18px;
+      font-weight:700;
       line-height:1;
       text-align:center;
     }
@@ -101,8 +135,7 @@
     .photo img{
       display:block;
       width:100%;
-      aspect-ratio:4/3;
-      object-fit:cover;
+      height:auto;
       background:#eee;
       transition:opacity .18s ease, transform .18s ease;
     }
@@ -182,6 +215,10 @@
         padding:48px 18px 38px;
       }
 
+      .hero::before{
+        background-size:390px auto;
+      }
+
       .hero h1{
         font-size:clamp(58px,20vw,92px);
       }
@@ -191,16 +228,16 @@
       }
 
       .gallery-section{
-        padding:28px 14px 52px;
+        padding:18px 12px 42px;
       }
 
       .gallery{
         grid-template-columns:1fr;
-        gap:30px;
+        gap:12px;
       }
 
-      .photo img{
-        aspect-ratio:auto;
+      .gallery-column{
+        gap:12px;
       }
 
       .lightbox{
@@ -227,20 +264,20 @@
   </header>
 
   <main class="gallery-section">
-    <div class="gallery">
-      <figure class="photo"><span class="num">01</span><button data-index="0" aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">02</span><button data-index="1" aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">03</span><button data-index="2" aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">04</span><button data-index="3" aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">05</span><button data-index="4" aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">06</span><button data-index="5" aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">07</span><button data-index="6" aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">08</span><button data-index="7" aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">09</span><button data-index="8" aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">10</span><button data-index="9" aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">11</span><button data-index="10" aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">12</span><button data-index="11" aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
-      <figure class="photo"><span class="num">13</span><button data-index="12" aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
+    <div class="gallery" id="gallery">
+      <figure class="photo" data-index="0"><span class="num">01</span><button aria-label="Enlarge photo 01"><img src="assets/01.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="1"><span class="num">02</span><button aria-label="Enlarge photo 02"><img src="assets/02.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="2"><span class="num">03</span><button aria-label="Enlarge photo 03"><img src="assets/03.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="3"><span class="num">04</span><button aria-label="Enlarge photo 04"><img src="assets/04.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="4"><span class="num">05</span><button aria-label="Enlarge photo 05"><img src="assets/05.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="5"><span class="num">06</span><button aria-label="Enlarge photo 06"><img src="assets/06.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="6"><span class="num">07</span><button aria-label="Enlarge photo 07"><img src="assets/07.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="7"><span class="num">08</span><button aria-label="Enlarge photo 08"><img src="assets/08.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="8"><span class="num">09</span><button aria-label="Enlarge photo 09"><img src="assets/09.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="9"><span class="num">10</span><button aria-label="Enlarge photo 10"><img src="assets/10.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="10"><span class="num">11</span><button aria-label="Enlarge photo 11"><img src="assets/11.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="11"><span class="num">12</span><button aria-label="Enlarge photo 12"><img src="assets/12.jpg" alt=""></button></figure>
+      <figure class="photo" data-index="12"><span class="num">13</span><button aria-label="Enlarge photo 13"><img src="assets/13.jpg" alt=""></button></figure>
     </div>
   </main>
 
@@ -253,9 +290,36 @@
   </div>
 
   <script>
+    const gallery = document.getElementById('gallery');
+    const photos = Array.from(gallery.querySelectorAll('.photo'));
     const files = Array.from({length:13}, (_,i) =>
       'assets/' + String(i + 1).padStart(2,'0') + '.jpg'
     );
+
+    function columnCount(){
+      if(window.innerWidth <= 620) return 1;
+      if(window.innerWidth <= 950) return 2;
+      return 3;
+    }
+
+    function arrangeGallery(){
+      const count = columnCount();
+      gallery.innerHTML = '';
+
+      const columns = Array.from({length:count}, () => {
+        const col = document.createElement('div');
+        col.className = 'gallery-column';
+        gallery.appendChild(col);
+        return col;
+      });
+
+      photos.forEach((photo, i) => {
+        columns[i % count].appendChild(photo);
+      });
+    }
+
+    arrangeGallery();
+    window.addEventListener('resize', arrangeGallery);
 
     const box = document.getElementById('lightbox');
     const image = document.getElementById('lightboxImage');
@@ -276,8 +340,10 @@
       document.body.style.overflow = '';
     }
 
-    document.querySelectorAll('.photo button').forEach(button => {
-      button.addEventListener('click', () => openPhoto(Number(button.dataset.index)));
+    photos.forEach(photo => {
+      photo.querySelector('button').addEventListener('click', () => {
+        openPhoto(Number(photo.dataset.index));
+      });
     });
 
     document.getElementById('close').addEventListener('click', closePhoto);
